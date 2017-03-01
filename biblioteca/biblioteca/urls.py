@@ -18,7 +18,13 @@ from django.contrib import admin
 
 from libros import views
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
+    url(r'^listadelibros/$', views.lista_libros, name='lista_libros'),
+    url(r'^detalle/(?P<object_id>\d+)/$', views.detalle_libro, name='detalle_libro'),
+    url(r'^agregar_libro/$', views.agregar_libro, name='nuevo_libro'),
+    url(r'^detalle_slug/(?P<slug>[\w-]+)/$', views.detalle_slug, name='detalle_slug'),
+
 ]
