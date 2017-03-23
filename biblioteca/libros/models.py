@@ -11,16 +11,16 @@ class Libro(models.Model):
     editorial = models.CharField(max_length=120)
     ISBN = models.CharField(max_length=120)
     precio = models.DecimalField(max_digits=9999, decimal_places=2)
-    slug = models.SlugField(max_length=40)
+    slug = models.SlugField(blank=True)  #unique=True
 
     def __unicode__(self):
         return self.name
 
-def Libro_pre_save_reciever(sender, instance, *args, **kwargs):
+def producto_pre_save_reciever(sender, instance, *args, **kwargs):
     print sender
     print instance
 
     if not instance.slug:
         instance.slug = slugify(instance.name)
 
-pre_save.connect(Libro_pre_save_reciever, sender=Libro)
+pre_save.connect(producto_pre_save_reciever, sender=Libro)

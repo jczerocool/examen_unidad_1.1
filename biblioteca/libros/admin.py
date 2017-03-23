@@ -11,6 +11,7 @@ class LibroAdmin(admin.ModelAdmin):
     search_fields = ["name"]
     list_editable = ["name", "precio"]
 
+
     class Meta:
         model = Libro
 

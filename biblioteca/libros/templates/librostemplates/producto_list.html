@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<h1>Libros</h1>
+<ul>
+  {%for Libro in libros%}
+    <li>{{Libro.name}}</li>
+  {%empty%}
+    <li>No hay libros en existencia!</li>
+  {%endfor%}
+</ul>
+
+{%endblock %}

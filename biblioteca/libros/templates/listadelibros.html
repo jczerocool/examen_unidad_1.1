@@ -1,10 +1,19 @@
-{% extends "base.html" %}
+{%extends 'base.html'%}
 
 {%block content%}
-  <h1>{{mensaje1}}, </h1>
-  <div class="">
-    <h2>{{libros}}, {{editorial}}<h2>
-      <h3>{{autor}}<h3>
+<h1>Libro</h1>
 
-  </div>
-{%endblock%}
+  {%for Libro in libros%}
+  <tr>
+    <td><a href="/detalle/{{Libro.id}}/update">{{Libro.name}}</a></td>
+    <td>{{Libro.autor}}</td>
+    <td>{{Libro.editorial}}</td>
+    <td>{{Libro.ISBN}}</td>
+    <td>{{Libro.precio}}</td>
+  </tr>
+  {%empty%}
+    <h1>No hay libros en existencia!</h1>
+  {%endfor%}
+
+
+{%endblock %}

@@ -17,14 +17,22 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from libros import views
+from libros.views import LibroListView, LibroDetailView, LibroCreateView, LibroUpdateView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
     url(r'^listadelibros/$', views.lista_libros, name='lista_libros'),
-    url(r'^detalle/(?P<object_id>\d+)/$', views.detalle_libro, name='detalle_libro'),
+    url(r'^detalle/(?P<object_id>\d+)/$', views.detalle, name='detalle_libro'),
+    url(r'^detalle/(?P<object_id>\d+)/update$', views.update, name='detalle_libro'),
+    url(r'^detalle/(?P<slug>[\w-]+)/$', views.detalle_s, name='detalle_s'),
+    url(r'^detalle/(?P<slug>[\w-]+)/$', views.detalle_slug, name='detalle_slug'),
     url(r'^agregar_libro/$', views.agregar_libro, name='nuevo_libro'),
-    url(r'^detalle_slug/(?P<slug>[\w-]+)/$', views.detalle_slug, name='detalle_slug'),
+
+
+    url(r'^Libro/(?P<pk>\d+)/update/$', LibroUpdateView.as_view(), name='update_view'),
+    url(r'^Libro/crear/$', LibroCreateView.as_view(), name='create_view'),
+    url(r'^Libro/(?P<pk>\d+)/$', LibroDetailView.as_view(), name='detalle_view'),
 
 ]
